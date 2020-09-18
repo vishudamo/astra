@@ -13,6 +13,26 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "microphone-stream",
+              "util",
+              "@aws-sdk/util-utf8-node",
+              "@aws-sdk/eventstream-marshaller",
+              "@aws-sdk/util-buffer-from",
+              "readable-stream",
+              "query-string",
+              "sha.js",
+              "ripemd160",
+              "create-hash",
+              "asymmetric-crypto",
+              "cipher-base",
+              "create-hmac",
+              "md5.js",
+              "create-hash/md5",
+              "tweetnacl",
+              "ed2curve",
+              "safe-buffer"
+            ],
             "outputPath": "dist/astra",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -24,7 +44,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -88,7 +110,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/bootstrap.min.css"
             ],
             "scripts": []
           }

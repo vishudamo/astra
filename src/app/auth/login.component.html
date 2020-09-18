@@ -1,0 +1,35 @@
+<div class="login-container">
+    <div class="login-form">
+        <mat-card class="card">
+            <mat-card-header class="form-heading">
+                <mat-card-title class="form-title">
+                    <div class="logo-wrapper">
+                        <img src="assets/images/logo-name.png" class="logo">
+                    </div>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form novalidate class="form-content" [formGroup]="form" (ngSubmit)="login()">
+                    <mat-form-field appearance="outline" class="form-input">
+                        <mat-label>Username</mat-label>
+                        <input matInput formControlName="username" #user>
+                        <mat-error *ngIf="form.controls.username.invalid">username is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="form-input">
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="password" #pass>
+                        <mat-error *ngIf="form.controls.password.invalid">password is required</mat-error>
+                    </mat-form-field>
+                    <div class="action-content">
+                        <button mat-button class="form-button" type="submit">Login</button>
+                    </div>
+                </form>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="note">
+                    Please login to access your account
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

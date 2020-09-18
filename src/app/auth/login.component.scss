@@ -1,0 +1,73 @@
+$form-background: #b2ebf2;
+$button-background: #0288d1;
+
+.login-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgb(245,247,250);
+    background: linear-gradient(180deg, rgba(245,247,250,1) 0%, rgba(217,224,235,1) 100%);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+
+.card {
+    border-radius: 10px !important;
+}
+
+.logo {
+    width: 200px;
+}
+
+.logo-wrapper {
+    margin-bottom: 20px;
+}
+
+.form-heading {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.form-title {
+    margin-top: 15px;
+    margin-bottom: 35px !important;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-input {
+    width: 80%;
+    min-width: 160px;
+}
+
+.action-content {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form-button {
+    background-color: $button-background;
+    color: white;
+    width: 160px;
+}
+
+.note {
+    text-align: center;
+    margin-bottom: 30px;
+    font-style: italic;
+    color: #757575;
+    font-size: 15px;
+    text-decoration: underline;
+}

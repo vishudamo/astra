@@ -61,3 +61,10 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+  // aws-sdk requires global to exist
+  (window as any).global = window;
+  // @ts-ignore
+  (window as any).process = require('process/browser');
+  // @ts-ignore
+  global.Buffer = global.Buffer || require('buffer').Buffer;

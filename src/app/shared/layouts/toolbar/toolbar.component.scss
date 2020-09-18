@@ -1,0 +1,73 @@
+$toolbar-background: #37474F;
+
+.toolbar {
+    background: $toolbar-background;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+
+    .wrapper {
+        width: 60%;
+        display: flex;
+        justify-content: space-around;
+        position: relative;
+
+        .menu {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .patient-wrapper {
+            text-align: center;
+        }
+
+        .patient-wrapper::after {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            content: "";
+            border-top: 6px solid white;
+            transform: rotate(180deg);
+            bottom: 0;
+            position: absolute;
+            right: 87%;
+        }
+    }
+}
+
+.btn {
+    min-width: 120px;
+    border-radius: 5px;
+}
+
+.icon-wrapper {
+    padding-top: 5px;
+    line-height: 20px;
+}
+
+.btn-icon {
+    height: 22px;
+    width: 22px;
+    font-size: 22px;
+    color: #ddd;
+    fill: #ddd;
+}
+
+.btn-text {
+    font-size: 16px;
+    color: #ddd;
+}
+
+.active {
+    background: rgba(255,255,255,0.12);
+
+    .btn-icon {
+        fill: white !important;
+    }
+
+    .btn-text {
+        color: white !important;
+    }
+}

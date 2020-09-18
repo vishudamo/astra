@@ -1,0 +1,95 @@
+$action-backcolor: linear-gradient(180deg, rgba(245,247,250,1) 0%, rgba(217,224,235,1) 100%);
+
+.patients {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.action-bar {
+    display: flex;
+    // background: $action-backcolor;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 60px;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    box-shadow: 0px 7px 10px -15px #111;
+
+
+    .mybreadcrumb {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .action {
+        margin-left: auto;
+    }
+}
+
+.bd-icon {
+    height: 18px;
+    width: 18px;
+    fill: #455a64;
+}
+
+.breadcrumb-name {
+    margin-left: 10px;
+    font-size: 18px;
+    color: #455a64;
+}
+
+.new-btn {
+    width: 120px;
+    background: #455a64;
+    color: white;
+}
+
+.table-bar {
+    display: flex;
+    align-items: baseline;
+    margin-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    .search {
+        flex: 2;
+
+        .search-bar {
+            width: 40%;
+        }
+    }
+
+    .action {
+        margin-left: auto;
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            fill: #455a64;
+        }
+    }
+}
+
+.search ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+.search ::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+.search ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}
+
+.table {
+    width: 100%;
+}
+
+.data-table {
+    width: 100%;
+}
+
+.patients {
+    ::ng-deep mat-row, mat-header-row, mat-footer-row, th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+        vertical-align: middle !important;
+    }
+}

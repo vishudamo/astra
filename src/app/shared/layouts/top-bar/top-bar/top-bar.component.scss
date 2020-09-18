@@ -1,0 +1,91 @@
+$topbar-height: 45px;
+$topbar-background: white;
+
+.top-bar {
+    display: flex;
+    width: 100%;
+    height: $topbar-height;
+    background: $topbar-background;
+    align-items: center;
+    position: sticky;
+    z-index: 9999999999;
+    top: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,0.2), 0 3px 3px -2px rgba(0,0,0,0.14), 0 1px 8px 0 rgba(0,0,0,0.12);
+
+    div {
+        flex: 1;
+    }
+
+    .logo {
+        width: 120px;
+        height: 33px;
+    }
+
+    .logo-wrapper {
+        margin-left: 30px;
+    }
+
+    .name-wrapper {
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .option-wrapper {
+        margin-left: auto;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+}
+
+.user-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.chat-icon {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    color: rgba(0,0,0,0.5);
+}
+
+.notify-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    color: rgba(0,0,0,0.5);
+}
+
+.option-button {
+    line-height: 30px;
+    min-width: 40px;
+}
+
+.account-name {
+    margin-left: 10px;
+    margin-right: 5px;
+    color: rgba(0,0,0,0.7);
+}
+
+//Badge styles
+.option-wrapper ::ng-deep .mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
+    right: 3px !important;
+}
+
+.option-wrapper ::ng-deep .mat-badge-medium.mat-badge-above .mat-badge-content {
+    top: -5px !important;
+}
+
+.option-wrapper ::ng-deep .mat-badge-medium .mat-badge-content {
+    width: 18px !important;
+    height: 18px !important;
+    line-height: 18px !important;
+    background: #E53935 !important;
+}
+
+.option-wrapper ::ng-deep .mat-badge-content {
+    font-size: 10px !important;
+}

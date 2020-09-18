@@ -1,0 +1,16 @@
+<div class="mic-wrapper">
+    <div class="voice-control">
+        <button mat-fab [style.background]="(isMicOn | async) ? '#2e7d32' : '#37474f'" (click)="ToggleAstra()" class="mic-btn">
+            <ng-container *ngIf="isMicOn | async; else MICOFF">
+                <mat-icon>
+                    mic
+                </mat-icon>
+            </ng-container>
+            <ng-template #MICOFF>
+                <mat-icon>
+                    mic_off
+                </mat-icon>
+            </ng-template>
+        </button>
+    </div>
+</div>

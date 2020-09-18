@@ -1,0 +1,2342 @@
+<mat-tab-group #patientInfo (selectedTabChange)="tabChanged($event)">
+    <!--Patient-->
+    <mat-tab label="Patient Summary">
+
+      <div class="mytab-content">
+
+      <div class="form_section">
+        <div class="row">
+        <div class="col-12">
+     <div class="card elevation-0">
+   <div class="row mt-5">
+           
+       <div class="col-md-12" >
+       <div class="p-3">
+             <!-- Profile Image -->
+             <div class="row p-3" style="border:1px solid #eee;background:#f2f2f2">
+         <div class="col-lg-2">
+         <div class="box box-primary">
+           <div class="box-body box-profile pt-5">
+           <div><img class="profile-user-img img-responsive img-circle text-center" src="assets/images/patient.jpg" alt="User profile picture"></div>				            
+           </div>            
+         </div>
+         </div>
+         
+         <div class="col-lg-5" style="border-right:1px solid #f4f4f4">
+         <div class="box box-primary">
+           <div class="box-body box-profile pt-2 pb-2">				
+           <h2 class="profile-username">Wilson</h2>
+           <p class="">04/05/1990 - 30 years, Male</p>
+           <p class="">59 West 47th Street,New York, <br/>NY - 10036.</p>
+             
+           <button class="btn btn-primary" style="padding-left: 20px;padding-right: 20px;"><i class="fa fa-phone"></i> Call</button> <button class="btn btn-default ml-4"><i class="fa fa-envelope"></i> Email</button>	
+           </div>            
+         </div>
+         </div>
+             <!-- /.box -->
+   
+         <div class="col-lg-5">
+           <div class="box box-primary">
+             <div class="box-body pt-3">
+               <div class="row mb-3">
+                 <div class="col-md-4">
+                   <strong> Account No</strong>
+                   
+                 </div>
+                 <div class="col-md-8">
+                   <span class="text-muted">ACC32434</span> <span style="background:#baf1a1;color:#fff;padding:2px 14px;border-radius:100px; margin-left:10px">Active</span>
+                 </div>
+               </div>
+           
+             
+           
+               <div class="row">
+                 <div class="col-md-4">
+                   <strong> Rendering</strong>
+                 </div>
+                 <div class="col-md-8">
+                   <p class="text-muted">David Miller</p>
+                 </div>
+               </div>
+               
+               
+               
+               <div class="row">
+                 <div class="col-md-4">
+                   <strong> Insurance</strong>
+                 </div>
+                 <div class="col-md-8">
+                   <p class="text-muted">Cigna Healthcare Insurance</p>
+                 </div>
+               </div>
+               
+               <div class="row">
+                 <div class="col-md-4">
+                   <strong> Work Phone</strong>
+                 </div>
+                 <div class="col-md-8">
+                   <p class="text-muted"> - Nil -</p>
+                 </div>
+               </div>
+           
+               
+           
+           <div class="row">
+             <div class="col-md-4">
+               <strong> Cell Phone</strong>
+             </div>
+             <div class="col-md-8">
+               <p class="text-muted">212-727-2900</p>
+             </div>
+           </div>
+           
+           
+               </div>
+               <!-- /.box-body -->
+             </div>
+         </div>
+             <!-- /.box -->
+           </div>
+       </div>
+       </div>
+       
+       </div>
+       
+        
+         </div>
+         
+         
+         
+       
+         <div class="col-md-10 offset-1 p-0">
+           <div class="row">
+        
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Procedure Details</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Surgery Type
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">
+                       {{ procedureDetails.surgeryType }}
+                     </p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Screening Type
+                   </div>
+                   <div class="col-md-2">
+                     <ng-container *ngIf="procedureDetails.screeningType; else pendingResult">
+                        <p class="text-right text-orange font-weight-bold">
+                           {{procedureDetails.screeningType}}
+                        </p>
+                      </ng-container>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Surgery Date
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">21/08/2020</p>
+                   </div>
+                 </div>
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Any Pre-Existing Condition?
+                   </div>
+                   <div class="col-md-2">
+                     <ng-container *ngIf="procedureDetails.preExistCondition.init; else pendingResult">
+                      <ng-container *ngIf="procedureDetails.preExistCondition.value; else noCondition">
+                        <p class="text-right text-orange font-weight-bold">
+                          Yes
+                        </p>
+                      </ng-container>
+                     </ng-container>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Screened for Malignant Neoplasm
+                   </div>
+                   <div class="col-md-2">
+                     <!-- <p class="text-muted text-right">Nil</p> -->
+                     <ng-container *ngIf="procedureDetails.screenForNeoplasm.init; else pendingResult">
+                      <ng-container *ngIf="procedureDetails.screenForNeoplasm.value; else noCondition">
+                        <p class="text-right text-orange font-weight-bold">
+                          Yes
+                        </p>
+                      </ng-container>
+                     </ng-container>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Procedure performed through stomach or anus?
+                   </div>
+                   <div class="col-md-2">
+                     <!-- <p class="text-muted text-right">Nil</p> -->
+                     <ng-container *ngIf="procedureDetails.procPerformedWay; else pendingResult">
+              
+                        <p class="text-right text-orange font-weight-bold">
+                          {{procedureDetails.procPerformedWay}}
+                        </p>
+                     
+                     </ng-container>
+                   </div>
+                 </div>
+                 </div>
+               </div>
+             </div>
+             
+             
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> General Details</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Dizziness
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Fatigue
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Fever
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Wheelchair Bound
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Weight Loss
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">10 lbs</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Weight Gain
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-muted">No</p>
+                   </div>
+                 </div>
+                 </div>
+               </div>
+             </div>
+        
+        
+           </div>
+         </div>
+         
+         
+         
+         <div class="col-md-10 offset-1 p-0">
+           <div class="row">
+        
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> GI Info</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Abdominal Pain
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Constipation
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Diarrhea
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Nausea
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Ulcerative Colitis
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Liver Disease 
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Heartburn/Reflux
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Difficulty/Painful Swallowing
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Vomiting
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Rectal Bleeding
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Crohn’s
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Had a colonoscopy?
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 </div>
+               </div>
+             </div>
+             
+             
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Cardiovascular</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Chest Pain/Pressure/Heaviness
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Irregular Heart Thythm
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     High Blood Pressure
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Valve Surgery
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Heart Attack
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Stents Placed
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-muted">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Defibrillator and/or Pacemaker
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-muted">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Congestive Heart Failure
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-muted">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     &nbsp;
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-muted">&nbsp;</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     &nbsp;
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-muted">&nbsp;</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     &nbsp;
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-muted">&nbsp;</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-10">
+                     &nbsp;
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-muted">&nbsp;</p>
+                   </div>
+                 </div>
+                 </div>
+               </div>
+             </div>
+        
+        
+           </div>
+         </div>
+         
+
+         <div class="col-md-10 offset-1 p-0">
+           <div class="row">
+        
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Hematologic</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Anemia (recent treatment)
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Free Bleeder/Hemophiliac
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Take any Blood Thinners such as Plavix etc. 
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 
+                 </div>
+               </div>
+             </div>
+             
+             
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> ENT</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Hard of Hearing
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Unexplained Vision Changes
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Glaucoma
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 
+                 </div>
+               </div>
+             </div>
+        
+        
+           </div>
+         </div>
+         
+         
+         
+         <div class="col-md-10 offset-1 p-0">
+           <div class="row">
+        
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Genitourinary</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Kidney disease/failure
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Diabetes
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Insulin 
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Oral Meds  
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     Dialysis 
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+                 
+                 </div>
+               </div>
+             </div>
+             
+             
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Neurologic</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row" >			
+                   <div class="col-md-8">
+                     Stroke/TIA
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">Yes</p>
+                   </div>
+                 </div>
+         
+                 <div class="row">
+                   <div class="col-md-8">
+                     Seizure –when was last one
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-muted text-right">No</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-8">
+                     &nbsp;
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">&nbsp;</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-10">
+                     &nbsp;
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">&nbsp;</p>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-10">
+                     &nbsp;
+                   </div>
+                   <div class="col-md-2">
+                     <p class="text-right text-orange font-weight-bold">&nbsp;</p>
+                   </div>
+                 </div>
+                 
+                 
+                 </div>
+               </div>
+             </div>
+        
+        
+           </div>
+         </div>
+         
+         
+         
+         <div class="col-md-12 p-0">
+           <div class="row">
+             <div class="col-md-12 p-2" >
+               <div class="col-md-12 p-0 pb-4" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Claims List</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row" >			
+                   <div class="col-md-12 pt-3">
+                     <table class="table table-striped table-border" style="border-collapse: separate;">
+             <thead class="thead-light">
+               <tr>
+                 <th>DOS</th>
+                 <th>Claim No</th>
+                 <th>Provider</th>
+                 <th>Insurance</th>
+                 <th class="text-right">Unbilled($)</th>
+                 <th class="text-right">Billed($)</th>
+                 <th class="text-right">Paid($)</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr>
+                 <td>02/12/20</td>
+                 <td>24545</td>
+                 <td>David Miller</td>
+                 <td>Cigna Healthcare</td>
+                 <td class="text-right">21.00</td>
+                 <td class="text-right">400.00</td>
+                 <td class="text-right">10.00</td>
+               </tr>
+               
+               <tr>
+                 <td>01/28/20</td>
+                 <td>75654</td>
+                 <td>John Willams</td>
+                 <td>123 Health Insurance</td>
+                 <td class="text-right">65.00</td>
+                 <td class="text-right">356.00</td>
+                 <td class="text-right">33.00</td>
+               </tr>
+               
+               <tr>
+                 <td>01/12/20</td>
+                 <td>24545</td>
+                 <td>Mike Hussey</td>
+                 <td>123 Insurance Healthcare</td>
+                 <td class="text-right">21.00</td>
+                 <td class="text-right">400.00</td>
+                 <td class="text-right">10.00</td>
+               </tr>
+               
+               <tr>
+                 <td>12/12/19</td>
+                 <td>24545</td>
+                 <td>David Miller</td>
+                 <td>Cigna Healthcare</td>
+                 <td class="text-right">75.00</td>
+                 <td class="text-right">675.00</td>
+                 <td class="text-right">43.00</td>
+               </tr>
+               <tr>
+                 <td>01/28/20</td>
+                 <td>75654</td>
+                 <td>John Willams</td>
+                 <td>123 Health Insurance</td>
+                 <td class="text-right">65.00</td>
+                 <td class="text-right">356.00</td>
+                 <td class="text-right">33.00</td>
+               </tr>
+               
+               <tr>
+                 <td>01/12/20</td>
+                 <td>24545</td>
+                 <td>Mike Hussey</td>
+                 <td>123 Insurance Healthcare</td>
+                 <td class="text-right">21.00</td>
+                 <td class="text-right">400.00</td>
+                 <td class="text-right">10.00</td>
+               </tr>
+               
+               <tr>
+                 <td>12/12/19</td>
+                 <td>24545</td>
+                 <td>David Miller</td>
+                 <td>Cigna Healthcare</td>
+                 <td class="text-right">75.00</td>
+                 <td class="text-right">675.00</td>
+                 <td class="text-right">43.00</td>
+               </tr>
+               
+               
+             </tbody>
+           </table>
+                   </div>
+                   
+                 </div>
+                 </div>
+               </div>
+             </div>
+             
+           </div>
+         </div>
+         
+         
+         <div class="col-md-12 p-0">
+           <div class="row">
+             <div class="col-md-12 p-2" >
+               <div class="col-md-12 p-0" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Notes</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row" >			
+                   <div class="col-md-12 pb-5 pt-2">
+                     <ng-container *ngIf="procedureDetails.procedureNotes.length; else noNotes">
+                       <p *ngFor="let note of procedureDetails.procedureNotes">
+                          {{note}}
+                       </p>
+                     </ng-container>
+                     <ng-template #noNotes>
+                       <p>Notes not available</p>
+                     </ng-template>
+                   </div>
+                   
+                 </div>
+                 </div>
+               </div>
+             </div>
+             
+           </div>
+         </div>
+
+
+         <div class="col-md-12 p-0">
+           <div class="row">
+             <div class="col-md-12 p-2" >
+               <div class="col-md-12 p-0" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Document</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row" >			
+                   <div class="col-md-12 pb-5 pt-2">
+                     <ng-container *ngIf="isDoc; else noDoc">
+                       <p *ngFor="let doc of docFiles">
+                         <a [href]="doc.url">{{doc.fileName}}</a>
+                       </p>
+                     </ng-container>
+                     <ng-template #noDoc>
+                       <p>No Procedure Report Records Found</p>
+                     </ng-template>
+                   </div>
+                   
+                 </div>
+                 </div>
+               </div>
+             </div>
+             
+           </div>
+         </div>
+       
+         
+   
+   
+   
+   
+   
+   
+   
+   
+   
+       
+       
+       
+       
+       
+       
+    </div></div>
+    </div>
+    </div>
+
+    </mat-tab>
+    <!--Observation-->
+
+
+
+    <mat-tab label="Observation">
+        
+
+      <div class="form_section">
+        <div class="row">
+        <div class="col-10 offset-1 p-0">
+     <div class="card elevation-0">
+   
+                 <div class="card-body">
+                   <!-- Date dd/mm/yyyy -->
+           
+         
+         </div>
+    </div></div>
+    
+    
+         <div class="col-md-10 offset-1 p-0">
+           <div class="row">
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0 pb-3" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Patient History</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 
+           
+                   <div class="input-group pt-2 mb-2">
+                     <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name">
+                       <h6 class="mb-0">First Colonoscopy?</h6>
+                     </label>
+                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+                       <div class="custom-control custom-radio row" style="display:inline">
+                         <div class="col-lg-6">
+                           <input class="custom-control-input" type="radio" id="yes" name="cars"  value="1">
+                           <label for="yes" class="custom-control-label">Yes</label>
+                         </div>
+                       </div>
+                       <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                         <div class="col-lg-6">
+                           <input class="custom-control-input" type="radio" id="no" name="cars" value="2">
+                           <label for="no" class="custom-control-label">No</label>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+           
+                   <div class="input-group pt-2 row desc" id="Cars2">
+             <label class="sdp-field-label mb-0 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2">
+               
+             </label>
+                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <input type="date" class="form-control" >
+               </div>
+           </div>
+           
+           
+                   <div class="input-group pt-2 mb-2">
+                     <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name">
+                       <h6 class="mb-0">Recently had a physical exam?</h6>
+                     </label>
+                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+                       <div class="custom-control custom-radio row" style="display:inline">
+                         <div class="col-lg-6">
+                           <input class="custom-control-input" type="radio" id="yes1" name="new"   value="yes">
+                           <label for="yes1" class="custom-control-label">Yes</label>
+                         </div>
+                       </div>
+                       <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                         <div class="col-lg-6">
+                           <input class="custom-control-input" type="radio" id="no1" name="new" value="no"  >
+                           <label for="no1" class="custom-control-label">No</label>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+           
+           <div class="input-group pt-2 row new" id="New2">
+             <label class="sdp-field-label mb-0 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2">
+               
+             </label>
+                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <input type="date" class="form-control" >
+               </div>
+           </div>
+           
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2">
+               <h6 class="mb-0">Dialysis patient?</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes3" name="opt" value="yes">
+                             <label for="yes3" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no3" name="opt"  value="no">
+                             <label for="no3" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 row opt" id="Opt2" style="display:none">
+             <label class="sdp-field-label mb-0 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2" for="name" title="name">
+               
+             </label>
+                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <input type="date" class="form-control" >
+               </div>
+           </div>
+           
+           
+           
+           
+           
+           
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Congestive heart failure?</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes4" name="yes4">
+                             <label for="yes4" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no4" name="yes4" >
+                             <label for="no4" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Ischemic heart disease?</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes5" name="yes5">
+                             <label for="yes5" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no5" name="yes5" >
+                             <label for="no5" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+         
+        
+         
+                 
+                 </div>
+               </div>
+             </div>
+             
+             
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0 pb-3" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> General Details</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 
+                 
+               
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Dizziness</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes7" name="yes7" >
+                             <label for="yes7" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no7" name="yes7" >
+                             <label for="no7" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Fatigue</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-4 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes1" name="yes8">
+                             <label for="yes8" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no8" name="yes8" >
+                             <label for="no8" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Fever</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes9" name="yes9" >
+                             <label for="yes9" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no9" name="yes9" >
+                             <label for="no9" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Wheelchair Bound</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes10" name="yes10" >
+                             <label for="yes10" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no10" name="yes10" >
+                             <label for="no10" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 row">
+             <label class="sdp-field-label mb-0 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2" for="name" title="name">
+               
+             </label>
+                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <input type="date" class="form-control" >
+               </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Weight Loss</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes11" name="yes11">
+                             <label for="yes11" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no11" name="yes11" >
+                             <label for="no11 class=" custom-control-label>No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Weight Gain</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes12" name="yes12">
+                             <label for="yes12" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no12" name="yes12" >
+                             <label for="no12" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+         
+           
+                 
+           
+                 </div>
+               </div>
+             </div>
+        
+        
+           </div>
+         </div>
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         <div class="col-md-10 offset-1 p-0">
+           <div class="row">
+        
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0 pb-3" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> GI Details</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 
+                 
+                 
+               <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Abdominal Pain</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes0" name="yes0" >
+                             <label for="yes0" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no0" name="yes0" >
+                             <label for="no0" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Constipation</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes01" name="yes01">
+                             <label for="yes01" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no01" name="yes01" >
+                             <label for="no01" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Diarrhea</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes02" name="yes02" >
+                             <label for="yes02" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no02" name="yes02" >
+                             <label for="no02" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Nausea</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes03" name="yes03" >
+                             <label for="yes03" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no03" name="yes03" >
+                             <label for="no03" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Ulcerative Colitis</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes04" name="yes04">
+                             <label for="yes04" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no04" name="yes04" >
+                             <label for="no04" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Liver Disease</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes05" name="yes05">
+                             <label for="yes05" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no05" name="yes05" >
+                             <label for="no05" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+        
+         
+                 
+                 
+                 
+                 <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Heartburn/Reflux</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes07" name="yes07" >
+                             <label for="yes07" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no07" name="yes07" >
+                             <label for="no07" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Difficulty/Painful Swallowing</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes08" name="yes08">
+                             <label for="yes08" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no08" name="yes08" >
+                             <label for="no08" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Vomiting</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes090" name="yes090" >
+                             <label for="yes090" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no090" name="yes090" >
+                             <label for="no0900" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Rectal Bleeding</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes0100" name="yes0100" >
+                             <label for="yes0100" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no0100" name="yes0100" >
+                             <label for="no0100" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Crohn’s</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes011" name="yes011">
+                             <label for="yes011" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no011" name="yes011" >
+                             <label for="no011" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Had a colonoscopy?</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes012" name="yes012">
+                             <label for="yes012" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no012" name="yes012" >
+                             <label for="no012" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+                 
+                 
+           
+               
+                 
+                 </div>
+               </div>
+             </div>
+             
+             
+             <div class="col-md-6 p-2" >
+               <div class="col-md-12 p-0 pb-3" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Cardiovascular</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 
+                 
+                 
+                 <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Chest Pain/Pressure/Heaviness</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes07" name="yes07" >
+                             <label for="yes07" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no07" name="yes07" >
+                             <label for="no07" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           <div class="input-group pt-2 row">
+             <label class="sdp-field-label mb-0 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2" for="name" title="name">
+               
+             </label>
+                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <input type="date" class="form-control" >
+               </div>
+           </div>
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Irregular Heart Thythm</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes08" name="yes08">
+                             <label for="yes08" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no08" name="yes08" >
+                             <label for="no08" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">High Blood Pressure</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes09" name="yes09" >
+                             <label for="yes09" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no09" name="yes09" >
+                             <label for="no09" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Valve Surgery</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes010" name="yes010" >
+                             <label for="yes010" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no010" name="yes010" >
+                             <label for="no010" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           <div class="input-group pt-2 row">
+             <label class="sdp-field-label mb-0 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2" for="name" title="name">
+               
+             </label>
+                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <input type="date" class="form-control" >
+               </div>
+           </div>
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Heart Attack</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes011" name="yes011">
+                             <label for="yes011" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no011" name="yes011" >
+                             <label for="no011" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Stents Placed</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes00012" name="yes00012">
+                             <label for="yes00012" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no012" name="yes00012" >
+                             <label for="no00012" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2">
+               <h6 class="mb-0">Defibrillator and/or Pacemaker</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes0012" name="yes0012" >
+                             <label for="yes0012" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no0012" name="yes0012" >
+                             <label for="no0012" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+           <div class="input-group pt-2 row">
+             <label class="sdp-field-label mb-0 col-lg-6 col-md-67 col-sm-6 col-xs-12 mt-2" for="name" title="name">
+               
+             </label>
+                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <input type="date" class="form-control" >
+               </div>
+           </div>
+           <div class="input-group pt-2 mb-2">
+             <label class="sdp-field-label mb-0 col-lg-7 col-md-7 col-sm-7 col-xs-12 mt-2" for="name" title="name">
+               <h6 class="mb-0">Congestive Heart Failure</h6>
+             </label>
+                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+               <div class="custom-control custom-radio row" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="yes012" name="yes012" >
+                             <label for="yes012" class="custom-control-label">Yes</label>
+                 </div>
+                           </div>
+                           <div class="custom-control custom-radio col-lg-6" style="display:inline">
+                             <div class="col-lg-6">
+                 <input class="custom-control-input" type="radio" id="no012" name="yes012" >
+                             <label for="no012" class="custom-control-label">No</label>
+                 </div>
+                           </div>
+             </div>
+           </div>
+               <div class="input-group pt-2 row">
+             <label class="sdp-field-label mb-0 col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-2" for="name" title="name">
+               
+             </label>
+                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <input type="date" class="form-control" >
+               </div>
+           </div>	
+                 
+           
+                 </div>
+               </div>
+             </div>
+        
+        
+           </div>
+         </div>
+         
+         
+         <div class="col-md-10 offset-1 p-0">
+           <div class="row">
+        
+             <div class="col-md-12 p-2" >
+               <div class="col-md-12 p-0 pb-3" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Patient Notes</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row pt-3">
+   
+           <div class="input-group pt-2 row mr-0 pb-3">
+                       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 pr-0 offset-2">
+               <textarea class="form-control" style="height:120px"></textarea>
+             </div>
+           </div>
+       
+         
+                 
+                   <!-- /.card-footer -->
+               </div>
+                 </div>
+                 </div>
+                   <div class="text-right pull-right mt-4">
+           <div class="container text-right pull-right pr-0">
+                     <button type="submit" class="btn btn-primary text-right" data-toggle="pill" href="#details">Next</button>
+                     
+                   </div>
+             </div>
+                 </div>
+                 </div>
+                 </div>
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+    </div>
+       </div>
+
+
+    </mat-tab>
+    <!--Procedure-->
+
+
+
+
+
+
+
+    <mat-tab label="Procedure">
+      
+
+      <div class="form_section">
+        <div class="row">
+     <div class="col-8 offset-2 p-0">
+     <div class="card elevation-0">
+   
+                 <div class="card-body">
+                   <!-- Date dd/mm/yyyy -->
+           <div class="row pt-3">
+           
+           <div class="col-md-12 p-0 m-0 form-label">
+   <div class="col-md-12 p-2 pb-3" >
+                   <div class="row mb-3">
+                     <h4 class="text-primary pb-0 mb-0 font-18 ml-1"><i class="fa fa-bars margin-r-5"></i> Procedure Details</h4>
+                   </div>
+                 </div>
+                   
+            
+           <div class="row form-group mb-4">
+   
+                     <div class="col-md-12 mt-1">
+                 <div class="row form-group mb-4">
+   
+                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+             
+             
+             <div class="input-group pt-2 row">
+               <!-- <mat-form-field appearance="outline" class="proc-input">
+                  <mat-label>Does the patient have a pre-existing condition?</mat-label>
+                  <input matInput formControlName="username" #procperf>
+               </mat-form-field> -->
+               <div class="o-group pr-step">
+                   <div class="o-label">
+                    Screening Type?
+                   </div>
+                   <div class="o-option">
+                        <mat-radio-group aria-label="Select an option" [(value)]="screeningType">
+                            <mat-radio-button value="1">Standard</mat-radio-button>
+                            <mat-radio-button class="o-one-option" value="2">Diagnostic</mat-radio-button>
+                        </mat-radio-group>
+                   </div>
+               </div>
+             </div>
+             
+             <div class="input-group pt-2 row">
+                <div class="o-group  pr-step">
+                    <div class="o-label">
+                     Does the patient have a pre-existing condition?
+                    </div>
+                    <div class="o-option">
+                         <mat-radio-group aria-label="Select an option" [(value)]="preCondition">
+                             <mat-radio-button value="1">Yes</mat-radio-button>
+                             <mat-radio-button class="o-one-option" value="2">No</mat-radio-button>
+                         </mat-radio-group>
+                    </div>
+                </div>
+             </div>
+             
+             <div class="input-group pt-2 row">
+                <div class="o-group  pr-step">
+                    <div class="o-label">
+                        Are you screening for malignant neoplasm?
+                    </div>
+                    <div class="o-option">
+                         <mat-radio-group aria-label="Select an option" [(value)]="malneoplasm">
+                             <mat-radio-button value="1">Yes</mat-radio-button>
+                             <mat-radio-button class="o-one-option" value="2">No</mat-radio-button>
+                         </mat-radio-group>
+                    </div>
+                </div>
+             </div>
+             
+             <div class="input-group pt-2 row">
+                <div class="o-group  pr-step">
+                    <div class="o-label">
+                        Is this procedure performed through stomach or anus?
+                    </div>
+                    <div class="o-option">
+                         <mat-radio-group aria-label="Select an option" [(value)]="procPerfWay">
+                             <mat-radio-button value="1">Stomach</mat-radio-button>
+                             <mat-radio-button class="o-one-option" value="2">Anus</mat-radio-button>
+                         </mat-radio-group>
+                    </div>
+                </div>
+             </div>
+             
+             <div class="input-group pt-2 row">
+               <div class="pr-notes  pr-step">
+                <mat-form-field class="dtr-state" appearance="outline">
+                    <mat-label>Procedure Notes</mat-label>
+                    <textarea matInput>
+                      {{ procNote }}
+                    </textarea>
+                  </mat-form-field>
+               </div>
+             </div>
+             
+           
+           
+          
+         </div>
+         
+         
+         
+         
+         
+                     
+                    </div>
+         
+         
+                 </div>
+           </div>
+           
+           
+            
+               
+         </div>
+           
+             
+         
+       
+                   <!-- /.card-footer -->
+               </div>
+         
+         </div>
+         
+         
+    </div></div>
+    
+    
+  
+                 
+                 
+                 <div class="col-md-8 offset-2 p-0 pb-3 mb-3" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> Choose ICD</h4>
+                   </div>
+                 </div>
+                 <div class="col-md-12 mt-3">
+                 <div class="row pt-3">
+   
+           <div class="col-md-12">
+   
+                   <div class="row form-group mb-4">
+   
+                     <div class="col-2 pl-0">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 1</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control" >
+             </div>
+                     </div>
+                     <div class="col-2">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 2</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control" value="">
+             </div>
+                     </div>
+             <div class="col-2">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 3</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control">
+             </div>
+                     </div>
+             <div class="col-2">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 4</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control">
+             </div>
+                     </div>
+             <div class="col-2">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 5</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control">
+             </div>
+                     </div>
+             <div class="col-2">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 6</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control">
+             </div>
+                     </div>
+   
+                    </div>
+            
+            <div class="row form-group mb-4">
+   
+                     <div class="col-2 pl-0">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 7</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control">
+             </div>
+                     </div>
+                     <div class="col-2">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 8</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control">
+             </div>
+                     </div>
+             <div class="col-2">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 9</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control">
+             </div>
+                     </div>
+             <div class="col-2">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 10</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control" #icdInp>
+             </div>
+                     </div>
+             <div class="col-2">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 11</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control">
+             </div>
+                     </div>
+             <div class="col-2">
+                       <label class="sdp-field-label mb-0" for="name" title="name">
+               <h6 class="mb-0">ICD 12</h6>
+             </label>
+             <div class="input-group pt-1">
+                       <input type="text" class="form-control">
+             </div>
+                     </div>
+   
+                    </div>
+               
+         </div>
+       
+         
+                 
+                   <!-- /.card-footer -->
+               </div>
+         
+         
+                 </div>
+                 </div>
+    
+    
+        <div class="col-md-10 offset-1 p-0 pb-3" style="background:#fafafa">		 
+                 <div class="col-md-12 px-2 py-3" style="background:#f1f1f1">
+                   <div class="row">
+                     <h4 class="text-primary pb-0 mb-0 ml-3 font-18"><i class="fa fa-bars margin-r-5"></i> ICD Mapping</h4>
+                   </div>
+                 </div>
+       
+    
+   <div class="col-md-12 mt-3">
+                 <div class="row pt-3">
+   
+         <div class="has-error col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding mt-2">    
+    <ul class="tblist br-4 pd-0 tbstyle">
+                   <li class="tb_list">
+                       <table class="table_details">
+                           <thead>
+                               <tr>
+                                   <th class=" td"></th>
+                                   <th class=" td">From</th>                                                
+                                   <th class=" td">To</th>                                
+                                   <th class="td">CPT</th>
+                                   <th class="td">M 1</th>
+                                   <th class="td">M 2</th>
+                                    
+                                   <th class="td">ICD Pointers</th>
+                                   <th class="td">Units</th>
+                                   <th class="td">Charges</th>
+                                   <th class="td" style="width:80px">Co-Pay</th>
+                               </tr>
+                           </thead>
+               <tr>
+               <td  style="width:32px">
+               <input type="checkbox" class="form-control">
+               </td>
+               <td>
+               <input type="text" class="border_none" value="03/25/2020">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none" value="03/25/2020">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none" #cpt>
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none" value="43">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none" placeholder="">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none" value="2,1">
+               </td>
+                 
+                 <td>
+               <input type="text" class="border_none" value="1">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none text-right" value="520.00">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none text-right" value="25.00">
+               </td>
+               </tr>
+               
+               
+               <tr>
+               <td  style="width:32px">
+               <input type="checkbox" class="form-control">
+               </td>
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+                 
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               </tr>
+               
+               
+               <tr>
+               <td  style="width:32px">
+               <input type="checkbox" class="form-control">
+               </td>
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+                 
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               </tr>
+               <tr>
+               <td  style="width:32px">
+               <input type="checkbox" class="form-control">
+               </td>
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+                 
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               </tr>
+               <tr>
+               <td  style="width:32px">
+               <input type="checkbox" class="form-control">
+               </td>
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+                 
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               </tr>
+               <tr>
+               <td  style="width:32px">
+               <input type="checkbox" class="form-control">
+               </td>
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+                 
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+                 <td>
+               <input type="text" class="border_none">
+               </td>
+               
+               <td>
+               <input type="text" class="border_none">
+               </td>
+               </tr>
+               
+                       </table>                                    
+                   </li>
+           </ul>
+    
+    </div>
+    </div>
+    </div></div>
+    </div>
+    </div>
+   <div class="text-center mt-3 mb-3">
+          <button type="button" class="btn btn-primary" (click)="openDialog()">
+                     Review
+                   </button>
+         </div>
+
+
+    </mat-tab>
+  </mat-tab-group>
+<ng-template #pendingResult>
+  <p class="text-muted text-right">
+    Nil
+  </p>
+</ng-template>
+<ng-template #noCondition>
+  <p class="text-right text-orange font-weight-bold">
+    No
+  </p>
+</ng-template>

@@ -1,0 +1,96 @@
+<div class="patients">
+    <div class="action-bar">
+        <div class="mybreadcrumb">
+            <svg class="bd-icon">
+                <use href="assets/svg/user-group.svg#svg-content" xmlns:xlink="http://www.w3.org/1999/xlink"></use>
+            </svg>
+            <span class="breadcrumb-name">
+                Patients &nbsp;/ &nbsp;List
+            </span>
+        </div>
+        <div class="action">
+            <button mat-button class="new-btn">
+                New Patient
+            </button>
+        </div>
+    </div>
+    <div class="table-bar">
+        <div class="search">
+            <mat-form-field appearance="outline" class="search-bar">
+                <mat-label>Search Patients</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </div>
+        <div class="action">
+            <button mat-button>
+                <svg class="icon">
+                    <use href="assets/svg/print-icon.svg#svg-content" xmlns:xlink="http://www.w3.org/1999/xlink"></use>
+                </svg>
+            </button>
+            <button mat-button>
+                <svg class="icon">
+                    <use href="assets/svg/excel-icon.svg#svg-content" xmlns:xlink="http://www.w3.org/1999/xlink"></use>
+                </svg>
+            </button>
+            <button mat-button>
+                <svg class="icon">
+                    <use href="assets/svg/pdf-icon.svg#svg-content" xmlns:xlink="http://www.w3.org/1999/xlink"></use>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div class="table">
+        <table mat-table class="data-table" [dataSource]="dataSource">
+            <!-- Position Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> 
+                  {{element.firstName + " " + element.lastName}} 
+              </td>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="gender">
+              <th mat-header-cell *matHeaderCellDef> Gender </th>
+              <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="insuranceName">
+              <th mat-header-cell *matHeaderCellDef> Insurance </th>
+              <td mat-cell *matCellDef="let element"> {{element.insuranceName}} </td>
+            </ng-container>
+        
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="policyNo">
+              <th mat-header-cell *matHeaderCellDef> Policy </th>
+              <td mat-cell *matCellDef="let element"> {{element.policyNo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="surgeryDate">
+              <th mat-header-cell *matHeaderCellDef> Surgery Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.surgeryDate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="surgeryType">
+              <th mat-header-cell *matHeaderCellDef> Surgery Type </th>
+              <td mat-cell *matCellDef="let element"> {{element.surgeryType}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Surgery Status </th>
+              <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="isBilled">
+              <th mat-header-cell *matHeaderCellDef> Billed </th>
+              <td mat-cell *matCellDef="let element"> {{element.isBilled ? 'Yes' : 'No'}} </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+::ng-deep .mat-tab-labels {
+  justify-content: center;
+}
+
+.mytab-content {
+  width: 99%;
+}
+
+.profile-user-img {
+  border-radius: 10px;
+  margin: 0 auto !important;
+  padding: 3px;
+}
+
+.note-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.note-wrapper {
+  display: flex;
+}
+
+.question {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.question > label {
+  margin-right: 20px;
+}
+
+.question-tab {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.proc-input {
+  width: 100%;
+  margin-left: 30px;
+}
+
+.o-group {
+  display: flex;
+  margin-left: 30px;
+  width: 100%;
+}
+
+.o-label {
+  flex: 0 0 70%;
+}
+
+.o-option {
+  flex: 0 0 30%;
+}
+
+.o-one-option {
+  margin-left: 20px;
+}
+
+.pr-notes {
+  width: 100%;
+  margin-left: 30px;
+}
+
+.dtr-state {
+  width: 100%;
+}
+
+.pr-step {
+  margin-bottom: 20px;
+}
